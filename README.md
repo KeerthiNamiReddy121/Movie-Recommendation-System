@@ -52,15 +52,52 @@ The program displays the available movies and asks the user to enter a movie tit
 
 The system uses a content-based filtering approach. Movie genres are converted into numerical features using TF-IDF vectorization. Cosine similarity is then used to compare the selected movie with the other movies in the dataset. Movies with higher similarity scores are ranked higher in the recommendation results.
 
+## How It Works
+
+The recommendation process follows these steps:
+
+1. The program loads movie titles and genres from `movies.csv`.
+2. TF-IDF vectorization converts the genre information into numerical feature vectors.
+3. Cosine similarity calculates the similarity between each pair of movies.
+4. The user selects a movie by entering its title.
+5. The program matches the title using case-insensitive comparison.
+6. The selected movie is removed from the recommendation candidates.
+7. The remaining movies are ranked from highest to lowest similarity.
+8. The five most similar movies are displayed with their similarity scores.
+
 ## Testing
 
 The system was tested using movies from different genres. It was also tested with an invalid movie title to verify error handling.
 
 During testing, the selected movie initially appeared in its own recommendation results when movies had identical similarity scores. The issue was corrected by explicitly removing the selected movie's index before ranking the remaining movies.
 
+The testing process verifies that:
+
+- Valid movie titles return five recommendations.
+- Movie-title matching is case-insensitive.
+- The selected movie does not appear in its own recommendation results.
+- Invalid movie titles produce an appropriate error message.
+- Recommendation results include similarity scores.
+
+Screenshots of the Inception recommendation test, Titanic recommendation test, and invalid-input test are included in the `screenshots/` directory.
+
+## Limitations
+
+The current system uses a small movie dataset and relies primarily on genre information to calculate similarity. As a result, movies with similar genre labels may receive similar scores even when they differ in other characteristics.
+
+The system does not currently use user ratings, viewing history, actors, directors, or plot descriptions. Therefore, the recommendations are based on movie-to-movie content similarity rather than individual user preferences.
+
 ## Future Improvements
 
-Future versions could use a larger movie dataset, user ratings, collaborative filtering, a graphical user interface, and personalized recommendations based on user history.
+Future improvements could include:
+
+- Expanding the movie dataset
+- Adding movie plot descriptions, actors, and directors as content features
+- Incorporating user ratings
+- Implementing collaborative filtering
+- Developing a hybrid recommendation approach
+- Creating a graphical user interface
+- Supporting personalized recommendations based on user history
 
 ## Author
 
